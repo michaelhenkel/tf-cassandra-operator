@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tf-cassandra-operator
+  namespace: contrail
 spec:
   replicas: 1
   selector:

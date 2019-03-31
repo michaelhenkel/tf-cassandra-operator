@@ -2,9 +2,11 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: tf-cassandra-operator
+  namespace: contrail
 subjects:
 - kind: ServiceAccount
   name: tf-cassandra-operator
+  namespace: contrail
 roleRef:
   kind: Role
   name: tf-cassandra-operator

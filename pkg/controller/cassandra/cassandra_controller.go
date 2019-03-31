@@ -172,6 +172,11 @@ func (r *ReconcileCassandra) Reconcile(request reconcile.Request) (reconcile.Res
 		err = r.client.Get(context.TODO(), types.NamespacedName{Name: "tfcassandracmv1", Namespace: foundConfigmap.Namespace}, foundConfigmap)
 		if err != nil && errors.IsNotFound(err) {
 			// Define a new configmap
+			/*
+			if instance.Spec.HostNetwork{
+				podIpList = podNodeNameList
+			}
+			*/
 			cm := r.configmapForCassandra(instance, podIpList)
 			reqLogger.Info("Creating a new Configmap.", "Configmap.Namespace", cm.Namespace, "Configmap.Name", cm.Name)
 			err = r.client.Create(context.TODO(), cm)
