@@ -278,6 +278,7 @@ func (r *ReconcileCassandra) deploymentForCassandra(m *cassandrav1alpha1.Cassand
                                         Labels: ls,
                                 },
                                 Spec: corev1.PodSpec{
+					HostNetwork: m.Spec.HostNetwork,
                                         InitContainers: []corev1.Container{{
                                                 Image:   "busybox",
                                                 Name:    "init",
