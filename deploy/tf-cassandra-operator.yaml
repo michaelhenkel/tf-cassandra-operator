@@ -171,6 +171,5 @@ metadata:
 spec:
   # Add fields here
   size: 3
-  hostnetwork: true<Paste>
+  hostnetwork: true
 ---
-
