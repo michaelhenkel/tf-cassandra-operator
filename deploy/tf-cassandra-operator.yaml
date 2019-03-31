@@ -166,10 +166,10 @@ kind: Cassandra
 metadata:
   name: cassandra
   namespace: contrail
-  registry: docker.io/michaelhenkel
-  version: 5.1.1-dev3
 spec:
   # Add fields here
   size: 3
   hostnetwork: true
+  registry: docker.io/michaelhenkel
+  version: 5.1.1-dev3
 ---
