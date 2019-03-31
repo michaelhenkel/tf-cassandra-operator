@@ -1,0 +1,7 @@
+apiVersion: cassandra.tungstenfabric.io/v1alpha1
+kind: Cassandra
+metadata:
+  name: example-cassandra
+spec:
+  # Add fields here
+  size: 3
