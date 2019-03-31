@@ -12,6 +12,14 @@ spec:
       labels:
         name: tf-cassandra-operator
     spec:
+      nodeSelector:
+          node-role.kubernetes.io/master: ''
+      tolerations:
+      - operator: Exists
+        effect: NoSchedule
+      - operator: Exists
+        effect: NoExecute
+      hostNetwork: true
       serviceAccountName: tf-cassandra-operator
       containers:
         - name: tf-cassandra-operator
@@ -19,7 +27,7 @@ spec:
           image: docker.io/michaelhenkel/cassandra-tf-operator:v0.0.1
           command:
           - tf-cassandra-operator
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
               valueFrom:

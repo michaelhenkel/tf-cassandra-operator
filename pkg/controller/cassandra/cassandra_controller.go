@@ -279,6 +279,16 @@ func (r *ReconcileCassandra) deploymentForCassandra(m *cassandrav1alpha1.Cassand
                                 },
                                 Spec: corev1.PodSpec{
 					HostNetwork: m.Spec.HostNetwork,
+					NodeSelector: map[string]string{
+						"node-role.kubernetes.io/master":"",
+					},
+					Tolerations: []corev1.Toleration{{
+						Operator: corev1.TolerationOpExists,
+						Effect: corev1.TaintEffectNoSchedule,
+					},{
+						Operator: corev1.TolerationOpExists,
+						Effect: corev1.TaintEffectNoExecute,
+					}},
                                         InitContainers: []corev1.Container{{
                                                 Image:   "busybox",
                                                 Name:    "init",
