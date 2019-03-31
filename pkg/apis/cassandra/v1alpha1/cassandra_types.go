@@ -16,6 +16,8 @@ type CassandraSpec struct {
 	// Size is the size of the memcached deployment
 	Size int32 `json:"size"`
 	HostNetwork bool `json:"hostnetwork"`
+	Registry string `json:"registry"`
+	Version string `json:"version"`
 }
 
 // CassandraStatus defines the observed state of Cassandra

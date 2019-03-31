@@ -3,7 +3,7 @@ package cassandra
 import (
 	"context"
 	"reflect"
-	//"time"
+	"fmt"
 	"strings"
 
 	cassandrav1alpha1 "github.com/michaelhenkel/tf-cassandra-operator/pkg/apis/cassandra/v1alpha1"
@@ -263,6 +263,7 @@ func (r *ReconcileCassandra) configmapForCassandra(m *cassandrav1alpha1.Cassandr
 func (r *ReconcileCassandra) deploymentForCassandra(m *cassandrav1alpha1.Cassandra) *appsv1.Deployment {
         ls := labelsForCassandra(m.Name)
         replicas := m.Spec.Size
+	cassandraImage := fmt.Sprintf("%s/contrail-external-cassandra:%s", m.Spec.Registry, m.Spec.Version)
 
         dep := &appsv1.Deployment{
                 TypeMeta: metav1.TypeMeta{
@@ -310,7 +311,7 @@ func (r *ReconcileCassandra) deploymentForCassandra(m *cassandrav1alpha1.Cassand
 						}},
                                         }},
                                         Containers: []corev1.Container{{
-                                                Image:   "docker.io/michaelhenkel/contrail-external-cassandra:5.1.1-dev3",
+                                                Image:   cassandraImage,
                                                 Name:    "cassandra",
 						EnvFrom: []corev1.EnvFromSource{{
 							ConfigMapRef: &corev1.ConfigMapEnvSource{
