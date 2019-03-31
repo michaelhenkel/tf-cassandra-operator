@@ -16,7 +16,7 @@ spec:
       containers:
         - name: tf-cassandra-operator
           # Replace this with the built image name
-          image: cassandra-tf-operator:v0.0.1
+          image: docker.io/michaelhenkel/cassandra-tf-operator:v0.0.1
           command:
           - tf-cassandra-operator
           imagePullPolicy: IfNotPresent
